@@ -85,7 +85,7 @@ function renderUploadSection(id, title, courses) {
     const status = form.querySelector("#upload-status");
     const formData = new FormData(form);
     try {
-      const res = await fetch("https://upsa-backend.onrender.com", { method: "POST", body: formData });
+      const res = await fetch("https://backend-production-9e08.up.railway.app", { method: "POST", body: formData });
       const data = await res.json();
       status.innerHTML = `<p style="color:green;">${data.message}</p>`;
     } catch {
@@ -156,7 +156,7 @@ function renderDownloadSection(id, category, courses) {
     }
     const params = new URLSearchParams({ category, course, ...(isPastPaper ? { title: type } : {}) });
     try {
-      const response = await fetch(`https://upsa-backend.onrender.com/list-files?${params}`);
+      const response = await fetch(`https://backend-production-9e08.up.railway.app/list-files?${params}`);
       const files = await response.json();
       fileList.innerHTML = files.length ?
         files.map(file => `<li><a href="${file}" target="_blank">${decodeURIComponent(file.split("/").pop())}</a></li>`).join('') :
